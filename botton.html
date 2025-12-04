@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExploitZ3r0</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #111111;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .rainbow-ai-btn {
+        position: relative;
+        background: linear-gradient(270deg, 
+            #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff, #ff0000
+        );
+        background-size: 1600% 1600%;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 9999px; 
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        animation: rainbowShift 8s linear infinite, glowPulse 2s ease-in-out infinite;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        overflow: hidden;
+        color: white;
+        text-shadow: 0 0 4px rgba(0,0,0,0.8);
+    }
+
+    .rainbow-ai-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 0 35px rgba(255,255,255,0.7), 0 4px 25px rgba(0,0,0,0.3);
+    }
+
+    .rainbow-ai-btn:active {
+        transform: translateY(0) scale(0.97);
+        box-shadow: 0 0 15px rgba(255,255,255,0.3), 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.8;
+        box-shadow: 0 0 6px white;
+        animation: sparkleMove linear infinite;
+    }
+
+    .trail {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.6;
+        box-shadow: 0 0 4px white;
+        animation: trailMove linear infinite;
+    }
+
+    @keyframes rainbowShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glowPulse {
+        0% { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        50% { box-shadow: 0 0 25px rgba(255,255,255,0.6); }
+        100% { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    }
+
+    @keyframes sparkleMove {
+        0% { transform: translateY(0) scale(0.5); opacity: 1; }
+        100% { transform: translateY(-80px) scale(1); opacity: 0; }
+    }
+
+    @keyframes trailMove {
+        0% { transform: translateY(0) scale(0.4); opacity: 0.6; }
+        100% { transform: translateY(-60px) scale(0.1); opacity: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<a href="https://exploitz3r0.vercel.app/" class="rainbow-ai-btn" id="magicButton">ExploitZ3r0</a>
+
+<script>
+    const btn = document.getElementById('magicButton');
+
+    function createSparkle() {
+        const sparkle = document.createElement('span');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * btn.offsetWidth + 'px';
+        sparkle.style.top = btn.offsetHeight + 'px';
+        sparkle.style.background = `hsl(${Math.random()*360}, 100%, 80%)`;
+        sparkle.style.animationDuration = 1 + Math.random() * 1.5 + 's';
+        btn.appendChild(sparkle);
+
+        const trail = document.createElement('span');
+        trail.classList.add('trail');
+        trail.style.left = sparkle.style.left;
+        trail.style.top = sparkle.style.top;
+        trail.style.background = sparkle.style.background;
+        trail.style.animationDuration = sparkle.style.animationDuration;
+        btn.appendChild(trail);
+
+        setTimeout(() => {
+            sparkle.remove();
+            trail.remove();
+        }, 2000);
+    }
+
+    setInterval(createSparkle, 100);
+</script>
+
+</body>
+</html>
